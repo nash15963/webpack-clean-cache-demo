@@ -3,7 +3,8 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "webpack-start": "NODE_ENV=development webpack serve --open"
+    "webpack-start": "NODE_ENV=development webpack serve --open",
+    "build" : "webpack --mode development"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
