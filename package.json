@@ -1,13 +1,19 @@
 {
+  "name": "webpack-express",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=development nodemon server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "webpack-start": "NODE_ENV=development webpack serve --open"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "browser-sync": "^3.0.2",
+    "html-webpack-plugin": "^5.6.0",
+    "nodemon": "^2.0.22",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   }
 }
