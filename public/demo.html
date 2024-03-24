@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue App</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<body>
+<div id="app">
+    <my-component :message-prop="message"></my-component>
+    <p>{{ message }}</p>
+</div>
+
+<script>
+const MyComponent = {
+    props: ['messageProp'],
+    template: `<div>{{ messageProp }}</div>`
+}
+
+const vm = Vue.createApp({
+    data() {
+        return {
+            message: "Hello, Vue!"
+        }
+    },
+    components: {
+        'my-component': MyComponent
+    }
+});
+vm.mount('#app');
+</script>
+</body>
+</html>
