@@ -5,7 +5,7 @@ const { HotModuleReplacementPlugin } = require('webpack');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -20,6 +20,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      hash: true,
     }),
     new HotModuleReplacementPlugin(),
   ],
@@ -30,3 +31,12 @@ module.exports = {
     hot: true,
   },
 };
+
+
+// module.exports = {
+//   entry: {
+//     pageOne: './src/pageOne/index.js',
+//     pageTwo: './src/pageTwo/index.js',
+//     pageThree: './src/pageThree/index.js',
+//   },
+// };
