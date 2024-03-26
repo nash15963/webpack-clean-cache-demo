@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
+const { watch } = require('browser-sync');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index2.js',
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: 'index2.[contenthash].js', // 可以不執行 ES6 module 的模組語法
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -27,6 +28,7 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
+      watch: true,
     },
     hot: true,
   },
