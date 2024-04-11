@@ -1,13 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { HotModuleReplacementPlugin } = require('webpack');
-const { watch } = require('browser-sync');
 
 module.exports = {
-  entry: './src/js/index2.js',
+  entry: {
+    index: './src/js/index.js',
+    index2: './src/js/index2.js',
+    myComponent: './src/js/my-component.js',
+    // 添加其他入口文件
+  },
   output: {
-    filename: './src/js/index2.[contenthash].js', // 可以不執行 ES6 module 的模組語法
+    filename: 'js/[name].[contenthash].js', // 输出文件放在dist/js下
     path: path.resolve(__dirname, 'dist'),
+    clean: true,  // 清理旧文件
   },
   module: {
     rules: [
@@ -15,15 +19,28 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-      // 可以在這裡添加更多文件類型的處理規則，例如處理圖片或轉譯JSX
+      // 可以在这里添加更多文件类型的处理规则，例如处理图片或转译JSX
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: 'index.html',
+      chunks: ['index'],  // 仅包含index入口的块
       hash: true,
     }),
-    new HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/demo.html',
+      filename: 'demo.html',
+      chunks: ['index2'],  // 仅包含index2入口的块
+      hash: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/404.html',
+      filename: '404.html',
+      chunks: [],  // 不包含js文件
+      hash: true,
+    }),
   ],
   devServer: {
     static: {
@@ -33,12 +50,3 @@ module.exports = {
     hot: true,
   },
 };
-
-
-// module.exports = {
-//   entry: {
-//     pageOne: './src/pageOne/index.js',
-//     pageTwo: './src/pageTwo/index.js',
-//     pageThree: './src/pageThree/index.js',
-//   },
-// };
