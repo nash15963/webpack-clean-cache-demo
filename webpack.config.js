@@ -4,9 +4,9 @@ const { HotModuleReplacementPlugin } = require('webpack');
 const { watch } = require('browser-sync');
 
 module.exports = {
-  entry: './src/index2.js',
+  entry: './src/js/index2.js',
   output: {
-    filename: 'index2.[contenthash].js', // 可以不執行 ES6 module 的模組語法
+    filename: './src/js/index2.[contenthash].js', // 可以不執行 ES6 module 的模組語法
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
